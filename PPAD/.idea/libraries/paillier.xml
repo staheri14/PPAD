@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="paillier">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/paillier.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
