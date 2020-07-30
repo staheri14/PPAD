@@ -16,4 +16,5 @@ PPAD has four main players, namely, users (data owners), advertisers (queriers),
 * The sets of attributes are modeled using Bloom filters whose implementation is given in BloomFilter.java. 
 * For the sake of the demo, DB.java contains methods necessary for generating synthetic profiles (i.e., attribute sets) and advertising requests (i.e., queries).
 * Main.java is the place to lunch PPAD. The program initially starts by reading two files corresponding to the set of users' profiles and advertising requests. Then, it starts matching them up and displays the matching result in the console.  
+* All the system parameters are embeded in PSP.java as static variables. 
 
