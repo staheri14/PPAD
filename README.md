@@ -10,8 +10,10 @@ This repo contains the proof-of-concept implementation of PPAD in Java programmi
 
 PPAD has four main players, namely, users (data owners), advertisers (queriers), and two servers. Each role and its associated actions are modeled inside a separate java class. 
 
-Server.java and PSP.java represent the two servers of PPAD. The user entity is modeled in Profile.java whereas the advertiser is realized in Advertiser.java .
-Group.java allows to bind a group of profiles together (the notion of group is used while performing the matching procedure, for more details please check the paper). 
+Server.java and PSP.java represent the two servers of PPAD. The user entity is modeled in Profile.java whereas the advertiser is realized in Advertiser.java.
+Group.java allows the binding of a group of profiles together (the notion of a group is relevant to the group-based advertising notion which is detailed in the paper). 
 The sets of attributes are modeled using Bloom filters whose implementation is given in BloomFilter.java. 
-For the sake of demo, DB.java contains methods necessary for generating synthetic profiles (i.e., attribute sets) and advertising request (i.e., queries).
+For the sake of the demo, DB.java contains methods necessary for generating synthetic profiles (i.e., attribute sets) and advertising requests (i.e., queries).
+
+Main.java is the place to lunch PPAD. The program initially starts by reading two files corresponding to the set of users' profiles and advertising requests. Then, it starts matching them up and displays the matching result in the console.  
 
