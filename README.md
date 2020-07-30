@@ -7,5 +7,6 @@ link: https://www.researchgate.net/profile/Alptekin_Kuepcue/publication/33267601
 
 # Implementation 
 This repo contains the proof-of-concept implementation of PPAD in Java programming language.
-PPAD has 4 main players, namely, users (data owners), advertisers (queriers), and two servers. Each role and its associated actions are modeled inside a separate java class. 
+
+PPAD has four main players, namely, users (data owners), advertisers (queriers), and two servers. Each role and its associated actions are modeled inside a separate java class. 
 
