@@ -1,5 +1,5 @@
 import jdk.nashorn.internal.runtime.linker.InvokeByName;
-import paillierp.Paillier;
+import paillierp.Paillier; //http://www.cs.utdallas.edu/dspl/cgi-bin/pailliertoolbox/javadoc/index.html?paillierp/Paillier.html
 import paillierp.key.KeyGen;
 import paillierp.key.PaillierKey;
 import paillierp.key.PaillierPrivateKey;
@@ -9,9 +9,7 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Random;
 
-/**
- * Created by stahe on 12/25/2017.
- */
+
 public class PSP {
 
     static  boolean generateNewProfiles=true;
@@ -104,13 +102,14 @@ public class PSP {
         BigInteger secretShares[]=new BigInteger[groupSize];
         BigInteger sum=new BigInteger(Integer.toString(0));
 
-
+        //create groupSize-1 secret shares of zero
         for(int i=0;i<groupSize-1;i++)
         {
             Random rand = new Random();
             secretShares[i]= new BigInteger(delimiterSet[delimiterSet.length-1].bitLength(), rand);
             sum=sum.add(secretShares[i].mod(modulus));
         }
+        //to enforce zero sum secret shares
         secretShares[groupSize-1]=new BigInteger(Integer.toString(0)).subtract(sum).mod(modulus);
         return secretShares;
     }
@@ -136,6 +135,8 @@ public class PSP {
         count++;
         return  GroupInfo;
     }
+
+
     public  int computePKlength()
     {
         BigInteger biggestData=new BigInteger(Integer.toString(0));

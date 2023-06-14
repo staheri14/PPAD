@@ -8,9 +8,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-/**
- * Created by stahe on 12/27/2017.
- */
+
 public class DB {
     public DB()
     {

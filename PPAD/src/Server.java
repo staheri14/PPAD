@@ -10,9 +10,7 @@ import java.util.Scanner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Created by stahe on 12/26/2017.
- */
+
 public class Server {
     public  static HashMap<BigInteger,Group> groups=new HashMap<>();
     //public static String[][] adRequestsAttributes=new String[PSP.numAd][PSP.attPerAd];
@@ -65,13 +63,17 @@ public class Server {
      */
     public static BigInteger groupAggregate(BigInteger[][] encryptedModifiedBF, BloomFilter reqBF)
     {
+        //initialize the aggregate which will contain the element-wise aggregation group's profiles
         BigInteger[] aggregate= new BigInteger[encryptedModifiedBF.length];
         for (int i=0;i<encryptedModifiedBF.length;i++)
         {
             aggregate[i]=paillier.encrypt(new BigInteger(Integer.toString(0)));
         }
+
+        //aggregate group members' encrypted modified bloom filters in a element-wise manner(profiles) to cancel out the secret shared value
         for(int i=0;i<encryptedModifiedBF[0].length;i++)
         {
+            //aggregate the ith bit for all the members
             if(!reqBF.getBitSet().get(i)) continue;
             for(int j=0;j<PSP.groupSize;j++)
             {
@@ -79,6 +81,8 @@ public class Server {
                     aggregate[j] = aggregate[j].multiply(encryptedModifiedBF[j][i]).mod(nSquare);
             }
         }
+
+        //then aggregate the elements of the aggregate array
         BigInteger result=paillier.encrypt(new BigInteger(Integer.toString(0)));
         for (int i=0;i<encryptedModifiedBF.length;i++)
         {
@@ -93,11 +97,13 @@ public class Server {
     }
     /**
      *
+     * Reads the DB and creates encrypted profiles and groups them
+     * Server.groups contains the groups info and the members
      */
     public void readAndMakeProfiles()
     {
-         long startTime=0;
-         long endTime=0;
+        long startTime=0;
+        long endTime=0;
         long avgRunTimeProfileCreation=0;
 
         Paillier paillier=new Paillier(PSP.publicKey);

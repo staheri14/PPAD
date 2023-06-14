@@ -3,9 +3,7 @@ import paillierp.key.PaillierKey;
 
 import java.math.BigInteger;
 
-/**
- * Created by stahe on 12/27/2017.
- */
+
 public class Advertiser {
     public BloomFilter bF;
     private String[] attSet;
@@ -23,7 +21,7 @@ public class Advertiser {
     }
 
     /**
-     * Couts the number of set bits in the Bloom filter of advertising request
+     * Counts the number of set bits in the Bloom filter of advertising request
      * @return
      */
     private BigInteger countOnes()

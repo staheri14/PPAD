@@ -3,15 +3,13 @@ import paillierp.key.PaillierKey;
 
 import java.math.BigInteger;
 
-/**
- * Created by stahe on 12/25/2017.
- */
+
 public class Profile {
     public BloomFilter bF;
      String[] attSet;
-    private BigInteger delimiter;
+    private BigInteger delimiter; //group member identifier
     private BigInteger secretShare;
-    public BigInteger sum;
+    public BigInteger sum; //the number of set bit in a bloom filter
      BigInteger[] encryptedModifiedBF=new BigInteger[PSP.bloomFilterSize];
     PaillierKey publicKey;
 
@@ -36,7 +34,8 @@ public class Profile {
     }
 
     /**
-     *
+     * Integrates the secret share and the delimiter into the BloomFilter and then
+     * creates the encrypted profile
      */
     public void encryptProfile()
     {
@@ -44,12 +43,13 @@ public class Profile {
         sum=new BigInteger(Integer.toString(0));
         for(int i=0;i<bF.getBitSet().size();i++)
         {
+            //if bit is 1
             if(bF.getBitSet().get(i))
             {
                  encryptedModifiedBF[i]=paillier.encrypt(delimiter.add(secretShare).mod(publicKey.getN()));
                // sum=sum.add(delimiter.add(secretShare));
                 sum=sum.add(new BigInteger(Integer.toString(1)));
-             }
+             } //if bit is zero
             else
             {
                 encryptedModifiedBF[i]=paillier.encrypt(secretShare);

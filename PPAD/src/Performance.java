@@ -6,9 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-/**
- * Created by stahe on 1/3/2018.
- */
+
 public class Performance {
     static  ArrayList<String[]> Users=new ArrayList<>(PSP.numUsers);
     static ArrayList <String[]> Advertismnts=new ArrayList<>(PSP.numAd);
